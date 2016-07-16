@@ -142,7 +142,7 @@
             // 
             this.loadingProgressBar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.loadingProgressBar.Name = "loadingProgressBar";
-            this.loadingProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.loadingProgressBar.Size = new System.Drawing.Size(880, 16);
             this.loadingProgressBar.Visible = false;
             // 
             // dataGridView1

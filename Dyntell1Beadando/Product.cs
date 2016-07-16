@@ -12,7 +12,6 @@ namespace Dyntell1Beadando
         private string _barCode;
         private AmountType _amuont;
 
-
         public string ProductName
         {
             get

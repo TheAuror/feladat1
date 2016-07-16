@@ -1,14 +1,10 @@
 ﻿using CsvHelper;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dyntell1Beadando
@@ -30,9 +26,10 @@ namespace Dyntell1Beadando
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             int percentage = 0;
+            float currentPosition = 0;
             using (StreamReader reader = (new StreamReader((string)e.Argument, Encoding.GetEncoding("iso-8859-1"))))
             {
-                
+                int rowCount = File.ReadLines((string)e.Argument).Count();
                 var csv = new CsvReader(reader);
                 csv.Configuration.Delimiter = ";";
                 csv.Configuration.HasHeaderRecord = true;
@@ -48,18 +45,21 @@ namespace Dyntell1Beadando
                     {
                         _products.Add(temp);
                     }));
+                    currentPosition++;
+                    percentage = (int)(((float)currentPosition / (float)rowCount) * (float)100);
+                    backgroundWorker1.ReportProgress(percentage);
                 }
             }
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            loadingProgressBar.Value = e.ProgressPercentage;
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            loadingProgressBar.Visible = false;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,6 +74,7 @@ namespace Dyntell1Beadando
                 if (open.ShowDialog() == DialogResult.OK)
                 {
                     backgroundWorker1.RunWorkerAsync(open.FileName);
+                    loadingProgressBar.Visible = true;
                 }
             }
         }
