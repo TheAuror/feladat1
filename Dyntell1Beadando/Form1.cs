@@ -16,6 +16,7 @@ namespace Dyntell1Beadando
     public partial class Form1 : Form
     {
         private BindingList<Product> _products = new BindingList<Product>();
+        private BindingList<Product> _searchResult = new BindingList<Product>();
         public Form1()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace Dyntell1Beadando
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            int percentage = 1;
+            int percentage = 0;
             using (StreamReader reader = (new StreamReader((string)e.Argument, Encoding.GetEncoding("iso-8859-1"))))
             {
                 
@@ -77,84 +78,21 @@ namespace Dyntell1Beadando
             }
         }
 
-        private void productNameSearchBox_TextChanged(object sender, EventArgs e)
+        private void searchBox_TextChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            _searchResult.Clear();
+            foreach(Product product in _products)
             {
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                if(!((string)row.Cells[0].Value).Contains(productNameSearchBox.Text))
+                if((product.ProductName).Contains(productNameSearchBox.Text) && 
+                   (product.ProductNumber).Contains(productNumberSearchBox.Text) &&
+                   (product.BarCode).Contains(barCodeSearchBox.Text) &&
+                   (product.Amount.ToString()).Contains(amountSearchBox.Text))
                 {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = false;
-                    currencyManager1.ResumeBinding();
-                }
-                else
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = true;
-                    currencyManager1.ResumeBinding();
+                    _searchResult.Add(product);
                 }
             }
-        }
-
-        private void productNumberSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                if (!((string)row.Cells[1].Value).Contains(productNumberSearchBox.Text))
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = false;
-                    currencyManager1.ResumeBinding();
-                }
-                else
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = true;
-                    currencyManager1.ResumeBinding();
-                }
-            }
-        }
-
-        private void barCodeSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                if (!((string)row.Cells[2].Value).Contains(barCodeSearchBox.Text))
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = false;
-                    currencyManager1.ResumeBinding();
-                }
-                else
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = true;
-                    currencyManager1.ResumeBinding();
-                }
-            }
-        }
-
-        private void amountSearchBox_TextChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                if (!((string)row.Cells[3].Value).Contains(amountSearchBox.Text))
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = false;
-                    currencyManager1.ResumeBinding();
-                }
-                else
-                {
-                    currencyManager1.SuspendBinding();
-                    row.Visible = true;
-                    currencyManager1.ResumeBinding();
-                }
-            }
+            bindingSource1.DataSource = _searchResult;
         }
     }
 }

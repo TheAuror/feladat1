@@ -31,29 +31,29 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.loadingProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dataGridViewComboBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.productNameSearchBox = new System.Windows.Forms.TextBox();
-            this.productNumberSearchBox = new System.Windows.Forms.TextBox();
-            this.barCodeSearchBox = new System.Windows.Forms.TextBox();
-            this.amountSearchBox = new System.Windows.Forms.TextBox();
             this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.dataGridViewComboBoxColumn3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.productNameSearchBox = new System.Windows.Forms.TextBox();
+            this.productNumberSearchBox = new System.Windows.Forms.TextBox();
+            this.barCodeSearchBox = new System.Windows.Forms.TextBox();
+            this.amountSearchBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -82,15 +82,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem1});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
@@ -115,6 +106,15 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem1});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // addToolStripMenuItem
             // 
@@ -164,6 +164,42 @@
             this.dataGridView1.Size = new System.Drawing.Size(890, 381);
             this.dataGridView1.TabIndex = 2;
             // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "Termék neve";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productNameDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // productNumberDataGridViewTextBoxColumn
+            // 
+            this.productNumberDataGridViewTextBoxColumn.DataPropertyName = "ProductNumber";
+            this.productNumberDataGridViewTextBoxColumn.HeaderText = "Cikk szám";
+            this.productNumberDataGridViewTextBoxColumn.Name = "productNumberDataGridViewTextBoxColumn";
+            this.productNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productNumberDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // barCodeDataGridViewTextBoxColumn
+            // 
+            this.barCodeDataGridViewTextBoxColumn.DataPropertyName = "BarCode";
+            this.barCodeDataGridViewTextBoxColumn.HeaderText = "Vonalkód";
+            this.barCodeDataGridViewTextBoxColumn.Name = "barCodeDataGridViewTextBoxColumn";
+            this.barCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barCodeDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Mennyiség";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.amountDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Dyntell1Beadando.Product);
+            // 
             // dataGridViewComboBoxColumn1
             // 
             this.dataGridViewComboBoxColumn1.DataPropertyName = "Amount";
@@ -197,17 +233,13 @@
             this.dataGridViewComboBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewComboBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Dyntell1Beadando.Product);
-            // 
             // productNameSearchBox
             // 
             this.productNameSearchBox.Location = new System.Drawing.Point(53, 35);
             this.productNameSearchBox.Name = "productNameSearchBox";
             this.productNameSearchBox.Size = new System.Drawing.Size(344, 20);
             this.productNameSearchBox.TabIndex = 3;
-            this.productNameSearchBox.TextChanged += new System.EventHandler(this.productNameSearchBox_TextChanged);
+            this.productNameSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // productNumberSearchBox
             // 
@@ -215,7 +247,7 @@
             this.productNumberSearchBox.Name = "productNumberSearchBox";
             this.productNumberSearchBox.Size = new System.Drawing.Size(194, 20);
             this.productNumberSearchBox.TabIndex = 4;
-            this.productNumberSearchBox.TextChanged += new System.EventHandler(this.productNumberSearchBox_TextChanged);
+            this.productNumberSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // barCodeSearchBox
             // 
@@ -223,7 +255,7 @@
             this.barCodeSearchBox.Name = "barCodeSearchBox";
             this.barCodeSearchBox.Size = new System.Drawing.Size(195, 20);
             this.barCodeSearchBox.TabIndex = 5;
-            this.barCodeSearchBox.TextChanged += new System.EventHandler(this.barCodeSearchBox_TextChanged);
+            this.barCodeSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // amountSearchBox
             // 
@@ -231,39 +263,7 @@
             this.amountSearchBox.Name = "amountSearchBox";
             this.amountSearchBox.Size = new System.Drawing.Size(87, 20);
             this.amountSearchBox.TabIndex = 6;
-            this.amountSearchBox.TextChanged += new System.EventHandler(this.amountSearchBox_TextChanged);
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "Termék neve";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productNameDataGridViewTextBoxColumn.Width = 350;
-            // 
-            // productNumberDataGridViewTextBoxColumn
-            // 
-            this.productNumberDataGridViewTextBoxColumn.DataPropertyName = "ProductNumber";
-            this.productNumberDataGridViewTextBoxColumn.HeaderText = "Cikk szám";
-            this.productNumberDataGridViewTextBoxColumn.Name = "productNumberDataGridViewTextBoxColumn";
-            this.productNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productNumberDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // barCodeDataGridViewTextBoxColumn
-            // 
-            this.barCodeDataGridViewTextBoxColumn.DataPropertyName = "BarCode";
-            this.barCodeDataGridViewTextBoxColumn.HeaderText = "Vonalkód";
-            this.barCodeDataGridViewTextBoxColumn.Name = "barCodeDataGridViewTextBoxColumn";
-            this.barCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.barCodeDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Mennyiség";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.amountDataGridViewTextBoxColumn.Width = 90;
+            this.amountSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
             // 
             // Form1
             // 
