@@ -5,7 +5,7 @@ namespace Dyntell1Beadando
 {
     public enum AmountType { darab, Pár, Csomag, méter};
 
-    public class Product : INotifyPropertyChanged
+    public class Product : INotifyPropertyChanged, IDataErrorInfo
     {
         private string _productName;
         private string _productNumber;
@@ -62,6 +62,41 @@ namespace Dyntell1Beadando
                 if (_amuont == value) return;
                 _amuont = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch(columnName)
+                {
+                    case nameof(ProductName):
+                        if (string.IsNullOrEmpty(ProductName))
+                            return "Kérem adja meg a termék nevét!";
+                        break;
+                    case nameof(ProductNumber):
+                        if (string.IsNullOrEmpty(ProductNumber))
+                            return "Kérem adja meg a cikkszámot!";
+                        break;
+                    case nameof(BarCode):
+                        if (string.IsNullOrEmpty(BarCode))
+                            return "Kérem adja meg a vonalkódot!";
+                        break;
+                    case nameof(Amount):
+                        if (string.IsNullOrEmpty(Amount.ToString()))
+                            return "Kérem adja meg a a mennyiségi egységet!";
+                        break;
+                }
+                return null;
             }
         }
 

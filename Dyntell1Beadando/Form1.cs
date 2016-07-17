@@ -83,13 +83,21 @@ namespace Dyntell1Beadando
         private void searchBox_TextChanged(object sender, EventArgs e)
         {
             _searchResult.Clear();
+            if((productNameSearchBox.Text == (string)productNameSearchBox.Tag || productNameSearchBox.Text == "") &&
+               (productNumberSearchBox.Text == (string)productNumberSearchBox.Tag || productNumberSearchBox.Text == "") &&
+               (barCodeSearchBox.Text == (string)barCodeSearchBox.Tag || barCodeSearchBox.Text == "") &&
+               amountSearchBox.Text == (string)amountSearchBox.Tag || amountSearchBox.Text == "")
+            {
+                if (bindingSource1.DataSource == _products) return;
+                bindingSource1.DataSource = _products;
+            }
             foreach(Product product in _products)
             {
                 CurrencyManager currencyManager1 = (CurrencyManager)BindingContext[dataGridView1.DataSource];
-                if((product.ProductName).Contains(productNameSearchBox.Text) && 
-                   (product.ProductNumber).Contains(productNumberSearchBox.Text) &&
-                   (product.BarCode).Contains(barCodeSearchBox.Text) &&
-                   (product.Amount.ToString()).Contains(amountSearchBox.Text))
+                if((product.ProductName).Contains(productNameSearchBox.Text == (string)productNameSearchBox.Tag ? "" : productNameSearchBox.Text) && 
+                   (product.ProductNumber).Contains(productNumberSearchBox.Text == (string)productNumberSearchBox.Tag ? "" : productNumberSearchBox.Text) &&
+                   (product.BarCode).Contains(barCodeSearchBox.Text == (string)barCodeSearchBox.Tag?"":barCodeSearchBox.Text) &&
+                   (product.Amount.ToString()).Contains(amountSearchBox.Text == (string)amountSearchBox.Tag ? "" : amountSearchBox.Text))
                 {
                     _searchResult.Add(product);
                 }
