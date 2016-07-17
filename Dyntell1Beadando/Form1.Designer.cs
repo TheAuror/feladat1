@@ -235,35 +235,55 @@
             // 
             // productNameSearchBox
             // 
+            this.productNameSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.productNameSearchBox.Location = new System.Drawing.Point(53, 35);
             this.productNameSearchBox.Name = "productNameSearchBox";
             this.productNameSearchBox.Size = new System.Drawing.Size(344, 20);
             this.productNameSearchBox.TabIndex = 3;
+            this.productNameSearchBox.Tag = "Keresés: Termék neve";
+            this.productNameSearchBox.Text = "Keresés: Termék neve";
             this.productNameSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.productNameSearchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.productNameSearchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // productNumberSearchBox
             // 
+            this.productNumberSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.productNumberSearchBox.Location = new System.Drawing.Point(403, 35);
             this.productNumberSearchBox.Name = "productNumberSearchBox";
             this.productNumberSearchBox.Size = new System.Drawing.Size(194, 20);
             this.productNumberSearchBox.TabIndex = 4;
+            this.productNumberSearchBox.Tag = "Keresés: Cikk szám";
+            this.productNumberSearchBox.Text = "Keresés: Cikk szám";
             this.productNumberSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.productNumberSearchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.productNumberSearchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // barCodeSearchBox
             // 
+            this.barCodeSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.barCodeSearchBox.Location = new System.Drawing.Point(603, 35);
             this.barCodeSearchBox.Name = "barCodeSearchBox";
             this.barCodeSearchBox.Size = new System.Drawing.Size(195, 20);
             this.barCodeSearchBox.TabIndex = 5;
+            this.barCodeSearchBox.Tag = "Keresés: Vonalkód";
+            this.barCodeSearchBox.Text = "Keresés: Vonalkód";
             this.barCodeSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.barCodeSearchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.barCodeSearchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // amountSearchBox
             // 
+            this.amountSearchBox.ForeColor = System.Drawing.SystemColors.GrayText;
             this.amountSearchBox.Location = new System.Drawing.Point(804, 35);
             this.amountSearchBox.Name = "amountSearchBox";
-            this.amountSearchBox.Size = new System.Drawing.Size(87, 20);
+            this.amountSearchBox.Size = new System.Drawing.Size(89, 20);
             this.amountSearchBox.TabIndex = 6;
+            this.amountSearchBox.Tag = "Keresés:";
+            this.amountSearchBox.Text = "Keresés:";
             this.amountSearchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            this.amountSearchBox.Enter += new System.EventHandler(this.searchBox_Enter);
+            this.amountSearchBox.Leave += new System.EventHandler(this.searchBox_Leave);
             // 
             // Form1
             // 

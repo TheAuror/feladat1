@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -94,6 +95,26 @@ namespace Dyntell1Beadando
                 }
             }
             bindingSource1.DataSource = _searchResult;
+        }
+
+        private void searchBox_Enter(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == (string)textBox.Tag)
+            {
+                textBox.Text = "";
+                textBox.ForeColor = SystemColors.WindowText;
+            }
+        }
+
+        private void searchBox_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length == 0)
+            {
+                textBox.Text = (string)textBox.Tag;
+                textBox.ForeColor = SystemColors.GrayText;
+            }
         }
     }
 }
