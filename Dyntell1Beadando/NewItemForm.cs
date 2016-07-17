@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Dyntell1Beadando
@@ -17,6 +10,7 @@ namespace Dyntell1Beadando
         public NewItemForm()
         {
             InitializeComponent();
+            amountComboBox.DataSource = Enum.GetNames(typeof(AmountType));
         }
 
         private void NewItemForm_Load(object sender, EventArgs e)

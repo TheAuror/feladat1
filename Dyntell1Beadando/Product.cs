@@ -67,10 +67,7 @@ namespace Dyntell1Beadando
 
         public string Error
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return this[nameof(ProductName)] ?? this[nameof(ProductNumber)] ?? this[nameof(BarCode)] ?? this[nameof(Amount)]; }
         }
 
         public string this[string columnName]
@@ -90,10 +87,8 @@ namespace Dyntell1Beadando
                     case nameof(BarCode):
                         if (string.IsNullOrEmpty(BarCode))
                             return "Kérem adja meg a vonalkódot!";
-                        break;
-                    case nameof(Amount):
-                        if (string.IsNullOrEmpty(Amount.ToString()))
-                            return "Kérem adja meg a a mennyiségi egységet!";
+                        if (BarCode.Length != 13)
+                            return "A vonalkód 13 számjegyből áll!";
                         break;
                 }
                 return null;

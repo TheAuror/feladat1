@@ -124,5 +124,18 @@ namespace Dyntell1Beadando
                 textBox.ForeColor = SystemColors.GrayText;
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (NewItemForm form = new NewItemForm())
+            {
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    Product product = form.Product;
+                    bindingSource1.CancelEdit();
+                    _products.Add(product);
+                }
+            }
+        }
     }
 }

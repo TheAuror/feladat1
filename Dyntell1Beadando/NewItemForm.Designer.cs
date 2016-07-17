@@ -36,11 +36,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.productNumberTextBox = new System.Windows.Forms.TextBox();
             this.barCodeTextBox = new System.Windows.Forms.TextBox();
             this.amountComboBox = new System.Windows.Forms.ComboBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -107,13 +109,19 @@
             // 
             // productNameTextBox
             // 
+            this.productNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ProductName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.productNameTextBox.Location = new System.Drawing.Point(105, 19);
             this.productNameTextBox.Name = "productNameTextBox";
             this.productNameTextBox.Size = new System.Drawing.Size(324, 20);
             this.productNameTextBox.TabIndex = 6;
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Dyntell1Beadando.Product);
+            // 
             // productNumberTextBox
             // 
+            this.productNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ProductNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.productNumberTextBox.Location = new System.Drawing.Point(105, 52);
             this.productNumberTextBox.Name = "productNumberTextBox";
             this.productNumberTextBox.Size = new System.Drawing.Size(324, 20);
@@ -121,6 +129,7 @@
             // 
             // barCodeTextBox
             // 
+            this.barCodeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "BarCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.barCodeTextBox.Location = new System.Drawing.Point(105, 85);
             this.barCodeTextBox.Name = "barCodeTextBox";
             this.barCodeTextBox.Size = new System.Drawing.Size(324, 20);
@@ -128,11 +137,20 @@
             // 
             // amountComboBox
             // 
+            this.amountComboBox.DataSource = this.bindingSource1;
+            this.amountComboBox.DisplayMember = "Amount";
+            this.amountComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.amountComboBox.FormattingEnabled = true;
             this.amountComboBox.Location = new System.Drawing.Point(105, 118);
             this.amountComboBox.Name = "amountComboBox";
             this.amountComboBox.Size = new System.Drawing.Size(121, 21);
             this.amountComboBox.TabIndex = 9;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            this.errorProvider1.DataSource = this.bindingSource1;
             // 
             // NewItemForm
             // 
@@ -157,6 +175,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewItemForm_FormClosing);
             this.Load += new System.EventHandler(this.NewItemForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +194,6 @@
         private System.Windows.Forms.TextBox barCodeTextBox;
         private System.Windows.Forms.ComboBox amountComboBox;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
