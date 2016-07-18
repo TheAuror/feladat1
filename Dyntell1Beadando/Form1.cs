@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using System;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -28,29 +29,21 @@ namespace Dyntell1Beadando
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             int percentage = 0;
-            float currentPosition = 0;
-            using (StreamReader reader = (new StreamReader((string)e.Argument, Encoding.GetEncoding("iso-8859-1"))))
+            using (StreamReader reader = (new StreamReader((string)e.Argument, Encoding.GetEncoding("iso-8859-2"))))
             {
                 int rowCount = File.ReadLines((string)e.Argument).Count();
                 var csv = new CsvReader(reader);
                 csv.Configuration.Delimiter = ";";
                 csv.Configuration.HasHeaderRecord = true;
-                csv.Configuration.CultureInfo = CultureInfo.CurrentUICulture;
-                while(csv.Read())
+                csv.Configuration.RegisterClassMap<ProductClassMap>();
+                var input = new BindingList<Product>(csv.GetRecords<Product>().ToList());
+                percentage = (int)((float)csv.Row / (float)rowCount * 100);
+                backgroundWorker1.ReportProgress(percentage);
+                Invoke(new Action(() =>
                 {
-                    Product temp = new Product();
-                    temp.ProductName = csv.GetField<string>(0);
-                    temp.ProductNumber = csv.GetField<string>(1);
-                    temp.BarCode = csv.GetField<string>(2);
-                    temp.Amount = csv.GetField<AmountType>(3);
-                    Invoke(new Action(() =>
-                    {
-                        _products.Add(temp);
-                    }));
-                    currentPosition++;
-                    percentage = (int)(((float)currentPosition / (float)rowCount) * (float)100);
-                    backgroundWorker1.ReportProgress(percentage);
-                }
+                    _products = input;
+                    bindingSource1.DataSource = _products;
+                }));
             }
         }
 
@@ -75,8 +68,13 @@ namespace Dyntell1Beadando
                 open.Filter = "Csv fájlok (.csv)|*.csv|Minden fájl|*.*";
                 if (open.ShowDialog() == DialogResult.OK)
                 {
+                    _products.Clear();
                     backgroundWorker1.RunWorkerAsync(open.FileName);
                     loadingProgressBar.Visible = true;
+                }
+                else
+                {
+                    return;
                 }
                 currentFile = new FileInfo(open.FileName);
             }
@@ -86,17 +84,24 @@ namespace Dyntell1Beadando
         {
             if(currentFile != null)
             {
-                using (StreamWriter sw = new StreamWriter(currentFile.FullName))
-                {
-                    CsvWriter csv = new CsvWriter(sw);
-                    csv.WriteRecords(_products);
-                }
+                saveDataToFile(currentFile.FullName);
             }
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            using (SaveFileDialog save = new SaveFileDialog())
+            {
+                save.OverwritePrompt = true;
+                save.Filter = "Csv fájlok (.csv)|*.csv|Minden fájl|*.*";
+                save.DefaultExt = ".csv";
+                save.AddExtension = true;
+                if(save.ShowDialog() == DialogResult.OK)
+                {
+                    saveDataToFile(save.FileName);
+                    currentFile = new FileInfo(save.FileName);
+                }
+            }
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -175,9 +180,16 @@ namespace Dyntell1Beadando
             }
         }
 
-        private void saveDataToFile()
+        private void saveDataToFile(string fileFullName)
         {
-
+            using (StreamWriter sw = new StreamWriter(fileFullName, false, Encoding.GetEncoding("iso-8859-2")))
+            {
+                CsvWriter csv = new CsvWriter(sw);
+                csv.Configuration.RegisterClassMap<ProductClassMap>();
+                csv.Configuration.Delimiter = ";";
+                csv.Configuration.QuoteAllFields = true;
+                csv.WriteRecords(_products);
+            }
         }
     }
 }

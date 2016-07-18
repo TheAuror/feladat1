@@ -63,6 +63,7 @@
       <DependentUpon>NewEditItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
+    <Compile Include="ProductClassMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
