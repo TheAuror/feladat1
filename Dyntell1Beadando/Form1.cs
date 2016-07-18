@@ -12,6 +12,7 @@ namespace Dyntell1Beadando
 {
     public partial class Form1 : Form
     {
+        private FileInfo currentFile;
         private BindingList<Product> _products = new BindingList<Product>();
         private BindingList<Product> _searchResult = new BindingList<Product>();
         public Form1()
@@ -77,7 +78,25 @@ namespace Dyntell1Beadando
                     backgroundWorker1.RunWorkerAsync(open.FileName);
                     loadingProgressBar.Visible = true;
                 }
+                currentFile = new FileInfo(open.FileName);
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(currentFile != null)
+            {
+                using (StreamWriter sw = new StreamWriter(currentFile.FullName))
+                {
+                    CsvWriter csv = new CsvWriter(sw);
+                    csv.WriteRecords(_products);
+                }
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void searchBox_TextChanged(object sender, EventArgs e)
@@ -127,15 +146,38 @@ namespace Dyntell1Beadando
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (NewItemForm form = new NewItemForm())
+            editOrAddItem();
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            editOrAddItem((Product)bindingSource1.Current);
+        }
+
+        private void editOrAddItem(Product selectedProduct=null)
+        {
+            using (NewEditItemForm form = new NewEditItemForm(selectedProduct))
             {
-                if(form.ShowDialog() == DialogResult.OK)
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    Product product = form.Product;
+                    Product product = new Product();
+                    product.DeepCopy(form._product);
                     bindingSource1.CancelEdit();
-                    _products.Add(product);
+                    if(selectedProduct == null)
+                    {
+                        _products.Add(product);
+                    }
+                    else
+                    {
+                        _products.SingleOrDefault(a => a == selectedProduct).DeepCopy(product);
+                    }
                 }
             }
+        }
+
+        private void saveDataToFile()
+        {
+
         }
     }
 }

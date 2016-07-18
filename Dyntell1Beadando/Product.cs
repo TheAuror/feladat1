@@ -101,5 +101,13 @@ namespace Dyntell1Beadando
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void DeepCopy(Product Product)
+        {
+            _productName = Product.ProductName;
+            _productNumber = Product.ProductNumber;
+            _barCode = Product.BarCode;
+            _amuont = Product.Amount;
+        }
     }
 }

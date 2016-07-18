@@ -1,6 +1,6 @@
 ﻿namespace Dyntell1Beadando
 {
-    partial class NewItemForm
+    partial class NewEditItemForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,13 +36,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.productNumberTextBox = new System.Windows.Forms.TextBox();
             this.barCodeTextBox = new System.Windows.Forms.TextBox();
             this.amountComboBox = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -53,7 +53,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Hozzáadás";
+            this.button1.Text = "Mentés";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -115,10 +115,6 @@
             this.productNameTextBox.Size = new System.Drawing.Size(324, 20);
             this.productNameTextBox.TabIndex = 6;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Dyntell1Beadando.Product);
-            // 
             // productNumberTextBox
             // 
             this.productNumberTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ProductNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -137,8 +133,6 @@
             // 
             // amountComboBox
             // 
-            this.amountComboBox.DataSource = this.bindingSource1;
-            this.amountComboBox.DisplayMember = "Amount";
             this.amountComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.amountComboBox.FormattingEnabled = true;
             this.amountComboBox.Location = new System.Drawing.Point(105, 118);
@@ -152,7 +146,11 @@
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.DataSource = this.bindingSource1;
             // 
-            // NewItemForm
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Dyntell1Beadando.Product);
+            // 
+            // NewEditItemForm
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,12 +168,12 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
-            this.Name = "NewItemForm";
+            this.Name = "NewEditItemForm";
             this.Text = "Új elem hozzáadása";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewItemForm_FormClosing);
             this.Load += new System.EventHandler(this.NewItemForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
